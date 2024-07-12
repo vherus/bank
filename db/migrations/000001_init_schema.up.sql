@@ -37,8 +37,8 @@ CREATE TABLE "transactions" (
                             (ext_account_sortcode BETWEEN 100000 AND 999999),
   CONSTRAINT              sender_and_receiver_cannot_both_be_null CHECK
                             (NOT (receiving_account_id IS NULL AND sending_account_id IS NULL)),
-  CONSTRAINT			        ext_acc_number_cannot_be_null_if_one_account_id_is_null CHECK 
+  CONSTRAINT              ext_acc_number_cannot_be_null_if_one_account_id_is_null CHECK 
                             (CASE WHEN receiving_account_id IS NULL OR sending_account_id IS NULL THEN ext_account_number IS NOT NULL END),
-  CONSTRAINT			        ext_acc_number_cannot_exist_when_has_sending_and_receiving CHECK
+  CONSTRAINT              ext_acc_number_cannot_exist_when_has_sending_and_receiving CHECK
                             (CASE WHEN receiving_account_id IS NOT NULL AND sending_account_id IS NOT NULL THEN ext_account_number IS NULL END)
 );
