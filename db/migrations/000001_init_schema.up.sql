@@ -34,7 +34,7 @@ CREATE TABLE "transactions" (
   FOREIGN KEY             (receiving_account_id) REFERENCES "accounts" (id),
   FOREIGN KEY             (sending_account_id) REFERENCES "accounts" (id),
   CONSTRAINT              valid_sort_code CHECK
-  							            (ext_account_sortcode BETWEEN 100000 AND 999999),
+        (ext_account_sortcode BETWEEN 100000 AND 999999),
   CONSTRAINT              sender_and_receiver_cannot_both_be_null CHECK
   							            (NOT (receiving_account_id IS NULL AND sending_account_id IS NULL)),
   CONSTRAINT			        ext_acc_number_cannot_be_null_if_one_account_id_is_null CHECK 
