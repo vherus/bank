@@ -14,4 +14,6 @@ I don't have a balance on the account entity, I'm presuming that's a calculated 
 
 ## Notes
 
+Open Banking Spec: https://openbankinguk.github.io/read-write-api-site3/v3.1.10/resources-and-data-models/aisp/Accounts.html
+
 Make a new migration: `migrate create -ext sql -dir db/migrations -seq init_schema`

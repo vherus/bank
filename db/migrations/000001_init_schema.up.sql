@@ -6,7 +6,9 @@ CREATE TABLE "customers" (
   PRIMARY KEY (id)
 );
 
-CREATE TYPE AccountType AS ENUM ('Current', 'Savings');
+CREATE TYPE AccountType AS ENUM ('Personal', 'Business');
+CREATE TYPE AccountSubType AS ENUM ('CurrentAccount', 'Savings', 'CreditCard');
+CREATE TYPE AccountStatus AS ENUM ('Enabled', 'Disabled', 'Deleted', 'ProForma', 'Pending');
 
 CREATE TABLE "accounts" (
   id                  integer GENERATED ALWAYS AS IDENTITY
@@ -14,7 +16,8 @@ CREATE TABLE "accounts" (
                         PRIMARY KEY,
   customer_id         uuid NOT NULL,
   account_type        AccountType NOT NULL,
-  label               VARCHAR(20),
+  currency            VARCHAR(3),
+  description         VARCHAR(35),
   sort_code           integer NOT NULL,
   created_timestamp   TIMESTAMP DEFAULT NOW()::timestamp,
   FOREIGN KEY         (customer_id) REFERENCES "customers" (id),
@@ -28,6 +31,7 @@ CREATE TABLE "transactions" (
   ext_account_number      integer,
   ext_account_sortcode    integer,
   amount                  integer NOT NULL,
+  currency_code           VARCHAR(3) NOT NULL,
   note                    VARCHAR(35),
   created_timestamp       TIMESTAMP DEFAULT NOW()::timestamp,
   PRIMARY KEY             (id),
