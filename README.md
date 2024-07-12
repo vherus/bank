@@ -1,6 +1,6 @@
-# Building a bank so Monzo will hire me
+# Building a bank
 
-Over the next several months I'm going to learn Go and a bunch of cloud infrastructure stuff by building a banking app so Monzo will hire me.
+Over the next several months I'm going to learn Go and a bunch of cloud infrastructure stuff by building a banking app.
 
 I will make a ton of mistakes and bad judgement calls, but I'll leave it all in here as a complete history. We should celebrate our failures as normal growing pains.
 
@@ -12,8 +12,6 @@ I imagine this will grow to include CQRS, micro-services, event streaming etc., 
 
 I don't have a balance on the account entity, I'm presuming that's a calculated value based on a transaction history. I'll figure out how to cache that or something later.
 
+## Notes
 
-docker run --name bank-postgres -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres:14-alpine
-docker exec -it bank-postgres psql -U root
-
-migrate create -ext sql -dir db/migrations -seq init_schema
+Make a new migration: `migrate create -ext sql -dir db/migrations -seq init_schema`
