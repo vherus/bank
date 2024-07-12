@@ -1,0 +1,4 @@
+DROP TABLE IF EXISTS transactions;
+DROP TABLE IF EXISTS accounts;
+DROP TYPE IF EXISTS AccountType;
+DROP TABLE IF EXISTS customers;

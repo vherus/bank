@@ -10,4 +10,10 @@ I imagine this will grow to include CQRS, micro-services, event streaming etc., 
 
 ![](./_assets/erd.png)
 
-I don't have a balance on the account entity, I'm presuming that's a calculated value based on a transaction history. I'll figure out how to cache that or something later. The SQL schema I've written to implement this db is in the [./_assets/db.sql](./_assets/db.sql) file.
+I don't have a balance on the account entity, I'm presuming that's a calculated value based on a transaction history. I'll figure out how to cache that or something later.
+
+
+docker run --name bank-postgres -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres:14-alpine
+docker exec -it bank-postgres psql -U root
+
+migrate create -ext sql -dir db/migrations -seq init_schema
