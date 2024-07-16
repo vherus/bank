@@ -48,13 +48,8 @@ func (h *customerHandler) ListCustomers(w http.ResponseWriter, req *http.Request
 	res := JSendResponse{Status: "success", Data: struct {
 		Customers []models.Customer `json:"customers"`
 	}{Customers: customers[:]}}
-	resB, err := json.Marshal(res)
 
-	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte("Internal server error"))
-		return
-	}
+	resB, _ := json.Marshal(res)
 
 	w.WriteHeader(http.StatusOK)
 	w.Write(resB)
@@ -64,13 +59,7 @@ type defaultHandler struct{}
 
 func (h *defaultHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	res := JSendResponse{Status: "fail", Data: "Not found"}
-	resBytes, err := json.Marshal(res)
-
-	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte("Internal server error"))
-		return
-	}
+	resBytes, _ := json.Marshal(res)
 
 	w.WriteHeader(http.StatusNotFound)
 	w.Write(resBytes)
