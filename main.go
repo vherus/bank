@@ -17,12 +17,12 @@ type defaultHandler struct{}
 
 type JSendResponse struct {
 	Status  string      `json:"status"`
-	Data    interface{} `json:"data"`
-	Message string      `json:"message"`
+	Data    interface{} `json:"data,omitempty"`
+	Message string      `json:"message,omitempty"`
 }
 
 func (h *defaultHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
-	res := JSendResponse{Status: "fail", Message: "Resource not found"}
+	res := JSendResponse{Status: "fail", Data: "Not found"}
 	resBytes, err := json.Marshal(res)
 
 	if err != nil {
